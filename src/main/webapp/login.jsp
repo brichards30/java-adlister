@@ -6,6 +6,13 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        * {
+            background-color: darkred;
+            color: goldenrod;
+        }
+
+    </style>
 </head>
 <body>
 <jsp:include page="partials/navbar.jsp"/>
@@ -13,7 +20,7 @@
     <label for="username">Username:</label>
     <input type="text" id="username" name="username"><br><br>
     <label for="password">Password:</label>
-    <input type="text" id="password" name="password"><br><br>
+    <input type="password" id="password" name="password"><br><br>
     <button type="submit">Submit</button>
 </form>
 
@@ -28,6 +35,6 @@
 
 
 <jsp:include page="partials/scriptsAndLinks.jsp"/>
-<jsp:include page="partials/footer.jsp"/>
+
 </body>
 </html>

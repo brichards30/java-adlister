@@ -4,6 +4,12 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        * {
+            background-color: darkred;
+            color: goldenrod;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="partials/navbar.jsp"/>

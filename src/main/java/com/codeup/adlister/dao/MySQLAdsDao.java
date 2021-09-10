@@ -45,11 +45,12 @@ public class MySQLAdsDao implements Ads {
 
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setInt(1, 1);
+            stmt.setInt(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
 
             stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
             ResultSet rs = stmt.getGeneratedKeys();
             return rs.getLong(1);
 
@@ -62,12 +63,12 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
-    private String createInsertQuery(Ad ad) {
-        return "INSERT INTO ads(user_id, title, description) VALUES "
-            + "(" + ad.getUserId() + ", "
-            + "'" + ad.getTitle() +"', "
-            + "'" + ad.getDescription() + "')";
-    }
+//    private String createInsertQuery(Ad ad) {
+//        return "INSERT INTO ads(user_id, title, description) VALUES "
+//            + "(" + ad.getUserId() + ", "
+//            + "'" + ad.getTitle() +"', "
+//            + "'" + ad.getDescription() + "')";
+//    }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(

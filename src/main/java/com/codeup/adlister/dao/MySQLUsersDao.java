@@ -27,13 +27,14 @@ public class MySQLUsersDao implements Users {
     public User findByUsername(String username) {
 
         try {
-            String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+            String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
 
 
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
 
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
                 System.out.println(rs);
                 return new User(

@@ -7,6 +7,7 @@ import com.mysql.cj.jdbc.Driver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MySQLUsersDao implements Users{
 
@@ -30,8 +31,10 @@ public class MySQLUsersDao implements Users{
         return null;
     }
 
+
     @Override
     public Long insert(User user) {
         return null;
     }
 }
+

@@ -1,5 +1,8 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.User;
+
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +16,10 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO: show the registration form
-        if (request.getSession().getAttribute("user") != null) {
-            response.sendRedirect("/profile");
-            return;
-        }
+//        if (request.getSession().getAttribute("user") != null) {
+//            response.sendRedirect("/profile");
+//            return;
+//        }
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
 
     }
@@ -28,16 +31,24 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirm = request.getParameter("password_confirm");
 
-        boolean validAttempt = false;
+        boolean inputIsIncorrect = username.isEmpty() || email.isEmpty() || password.isEmpty() || (!password.equals(confirm));
 
-        if (validAttempt) {
+        if (inputIsIncorrect) {
             // TODO: store the logged in user object in the session, instead of just the username
-            request.getSession().setAttribute("user", username);
-            response.sendRedirect("/profile");
-        } else {
             response.sendRedirect("/register");
+            return;
         }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        DaoFactory.getUsersDao().insert(user);
+
+
 
     }
 }
